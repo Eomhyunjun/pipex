@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   px_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/07 19:35:59 by heom              #+#    #+#             */
-/*   Updated: 2021/06/10 19:55:43 by heom             ###   ########.fr       */
+/*   Created: 2021/06/10 19:19:19 by heom              #+#    #+#             */
+/*   Updated: 2021/06/10 19:24:28 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include "mand/pipex.h"
-#include <errno.h>
-#include <string.h>
+#include "../pipex.h"
 
-void print_fd()
+unsigned int	px_strlcpy(char *dest, char *src, unsigned int size)
 {
-	int i;
-	i = 0;
-	while (i++ < all()->proc_num)
+	char			*d;
+	char			*s;
+	unsigned int	n;
+
+	d = dest;
+	s = src;
+	n = size;
+	if (s == 0)
+		return (0);
+	if (n != 0)
 	{
-		printf("%d %d\n", all()->fd[i][0], all()->fd[i][1]);
+		while (--n != 0)
+		{
+			if ((*d++ = *s++) == '\0')
+				break ;
+		}
 	}
-}
-int	main(void)
-{
-	int size;
-	char **o;
-	int res;
-
-	o = px_split("~/pipex/test.sh", ' ', &size);
-
-	res = execve("~/pipex/test.sh", o, o);
-	printf("%d %s\n", res, strerror(errno));
-	return (0);
+	if (n == 0)
+	{
+		if (size != 0)
+			*d = '\0';
+		while (*s++)
+			;
+	}
+	return (s - src - 1);
 }

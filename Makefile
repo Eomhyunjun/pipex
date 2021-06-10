@@ -6,7 +6,7 @@
 #    By: heom <heom@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/10 12:51:40 by heom              #+#    #+#              #
-#    Updated: 2021/06/10 19:09:37 by heom             ###   ########.fr        #
+#    Updated: 2021/06/10 20:11:53 by heom             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,14 @@ CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -f
 
 MAND_SRCS = main \
-			memory \
+			safe_exit \
 			all \
 			malloc_fd \
 			make_pipe \
 			fork_loop \
+			utils/px_split \
+			utils/px_strlcpy \
+			utils/px_strjoin \
 
 BONUS_SRCS = main \
 

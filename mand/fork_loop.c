@@ -6,16 +6,59 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 19:00:26 by heom              #+#    #+#             */
-/*   Updated: 2021/06/10 19:11:17 by heom             ###   ########.fr       */
+/*   Updated: 2021/06/10 20:32:15 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void
-	do_child(int id, char *argv, char **env)
+char
+	**get_paths(void)
 {
-	(void)	argv;
+	int		i;
+	int		j;
+	char	*s;
+
+	i = 0;
+	while (all()->env[i])
+	{
+		s = all()->env[i];
+		if (s[0] == 'P' && s[1] == 'A' &&
+			s[2] == 'T' && s[3] == 'H' &&
+			s[4] == '=')
+			return (px_split(&s[5], ':'));
+		i++;
+	}
+	return (NULL);
+}
+
+int
+	try_execve_loop(char *raw_cmd)
+{
+	char	**new_argv;
+	int		ret;
+	char	*exec_path;
+	char	**paths;
+
+	ret = -1;
+	new_argv = px_split(raw_cmd, ' ');
+	paths = get_paths(); // need free
+	while (ret == -1)
+	{
+
+		exec_path = px_strjoin(_____, raw_cmd);
+		ret = execve(exec_path, new_argv, all()->env);
+	}
+	dprintf(2, "%d\n", ret);
+	return (ret);
+}
+
+void
+	do_child(int id, char *raw_cmd)
+{
+	char	**new_argv;
+	int		size;
+
 	if (id >= 0 && id < all()->proc_num - 1)
 	{
 		dup2(all()->fd[id][0], STDIN_FILENO);
@@ -28,32 +71,27 @@ void
 		dup2(all()->fd[id][0], STDIN_FILENO);
 		close(all()->fd[id][1]);
 	}
-	char *argva[3];
-	argva[0] = "cat";
-	argva[1] = "test.c";
-	argva[2] = NULL;
-	execve("/bin/cat", argva, env);
-	exit(0);
+	if (!try_execev_loop())
+	{
+		write(1, "", 1);
+		safe_exit(1, "file not found");
+	}
 }
 
 void
-	fork_loop(char **argv, char **env)
+	fork_loop()
 {
-	int	i;
+	int		i;
+	pid_t	pid;
 
 	i = 0;
 	while (i < all()->proc_num)
 	{
-		pid_t pid;
 		pid = fork();
 		if (pid == -1)
-		{
 			safe_exit(1, "fork error!\n");
-		}
 		if (pid == 0)
-		{
-			do_child(i, argv[i + 2], env);
-		}
+			do_child(i, all()->argv[i + 2]);
 		i++;
 	}
 }

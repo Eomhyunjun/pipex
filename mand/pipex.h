@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 12:45:50 by heom              #+#    #+#             */
-/*   Updated: 2021/06/10 19:10:41 by heom             ###   ########.fr       */
+/*   Updated: 2021/06/10 20:36:21 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,21 @@ void
 make_pipe(void);
 
 void
-fork_loop(char **argv, char **env);
-
-void
-do_child(int id, char *argv, char **env);
+fork_loop();
 
 void
 safe_exit(int code, const char *msg);
 
+/*
+**-----------------split
+*/
+char
+**px_split(char const *s, char c);
+
+char
+*px_strjoin(char const *s1, char const *mid, char const *s2);
+
+unsigned int
+px_strlcpy(char *dest, char *src, unsigned int size);
 
 #endif
