@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 12:45:50 by heom              #+#    #+#             */
-/*   Updated: 2021/06/10 20:36:21 by heom             ###   ########.fr       */
+/*   Updated: 2021/06/11 15:52:32 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include <stdio.h> // should delete!
 # include "types.h"
 
@@ -32,6 +33,9 @@ fork_loop();
 
 void
 safe_exit(int code, const char *msg);
+
+void
+exit_code_msg(int code, const char *msg);
 
 /*
 **-----------------split

@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 13:49:42 by heom              #+#    #+#             */
-/*   Updated: 2021/06/10 20:17:57 by heom             ###   ########.fr       */
+/*   Updated: 2021/06/11 16:23:45 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,22 @@
 
 
 void
-	put_str(int	fd, const char* s)
+	put_str(int	fd, const char *s)
 {
-	while (s)
+	while (*s)
 	{
 		write(fd, s, 1);
 		s++;
 	}
+	write(fd, "\n", 1);
+}
+
+void
+	exit_code_msg(int code, const char *msg)
+{
+	if (msg && msg[0])
+		put_str(2, msg);
+	exit(code);
 }
 
 void
@@ -45,7 +54,10 @@ void
 		free(fd);
 		all()->fd = 0;
 	}
-	if (msg && msg[0])
-		put_str(2, msg);
-	exit(code);
+	if (all()->rfd != 0)
+		close(all()->rfd);
+	if (all()->wfd != 0)
+		close(all()->wfd);
+	printf("closed!!!\n");
+	exit_code_msg(code, msg);
 }
