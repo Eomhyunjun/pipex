@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 19:24:10 by heom              #+#    #+#             */
-/*   Updated: 2021/06/10 20:15:19 by heom             ###   ########.fr       */
+/*   Updated: 2021/06/11 20:32:09 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,21 @@ static char		**free_all(char **tab, int k)
 	}
 	free(tab);
 	return (NULL);
+}
+
+void			free_px_split(char **tab)
+{
+	int	i;
+
+	i = 0;
+	if (!tab)
+		return ;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }
 
 char			**px_split(char const *s, char c)

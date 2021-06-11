@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 13:49:42 by heom              #+#    #+#             */
-/*   Updated: 2021/06/11 16:23:45 by heom             ###   ########.fr       */
+/*   Updated: 2021/06/11 20:34:12 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ void
 	int	i;
 	int	**fd;
 
-	fd = all()->fd;
-	if (fd)
+	if ((fd = all()->fd))
 	{
 		i = 0;
 		while (i < all()->proc_num)
@@ -54,10 +53,11 @@ void
 		free(fd);
 		all()->fd = 0;
 	}
+	free_px_split(all()->new_argv);
+	free_px_split(all()->paths);
 	if (all()->rfd != 0)
 		close(all()->rfd);
 	if (all()->wfd != 0)
 		close(all()->wfd);
-	printf("closed!!!\n");
 	exit_code_msg(code, msg);
 }

@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 12:45:50 by heom              #+#    #+#             */
-/*   Updated: 2021/06/11 15:52:32 by heom             ###   ########.fr       */
+/*   Updated: 2021/06/11 20:19:37 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ exit_code_msg(int code, const char *msg);
 */
 char
 **px_split(char const *s, char c);
+
+void
+free_px_split(char **tab);
 
 char
 *px_strjoin(char const *s1, char const *mid, char const *s2);
