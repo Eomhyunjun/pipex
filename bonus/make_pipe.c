@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   all.c                                              :+:      :+:    :+:   */
+/*   make_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/10 12:56:28 by heom              #+#    #+#             */
-/*   Updated: 2021/06/14 16:43:47 by heom             ###   ########.fr       */
+/*   Created: 2021/06/10 18:48:19 by heom              #+#    #+#             */
+/*   Updated: 2021/06/10 18:48:23 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-t_all
-	*all(void)
+void
+	make_pipe(void)
 {
-	static t_all	instance;
+	int	i;
 
-	return (&instance);
+	i = 0;
+	while (i < all()->proc_num)
+	{
+		if (pipe(all()->fd[i]))
+			safe_exit(1, "pipe error!\n");
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 #    By: heom <heom@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/10 12:51:40 by heom              #+#    #+#              #
-#    Updated: 2021/06/10 20:11:53 by heom             ###   ########.fr        #
+#    Updated: 2021/06/14 19:22:20 by heom             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,14 @@ MAND_SRCS = main \
 			utils/px_strjoin \
 
 BONUS_SRCS = main \
-
-
+			safe_exit \
+			all \
+			malloc_fd \
+			make_pipe \
+			fork_loop \
+			utils/px_split \
+			utils/px_strlcpy \
+			utils/px_strjoin \
 
 MAND_OBJS = $(MAND_FIL:.c=.o)
 BONUS_OBJS = $(BONUS_FIL:.c=.o)
@@ -46,22 +52,19 @@ $(MAND_OBJS): %.o : %.c
 $(NAME) : $(MAND_OBJS)
 	gcc $(CFLAGS) $^ -o $@
 
-$(NAME)_bonus: $(BONUS_OBJS)
-	gcc $(CFLAGS) $^ -o $@
-
-
 clean :
 	$(RM) $(MAND_OBJS) $(BONUS_OBJS)
 
 fclean : clean
 	$(RM) $(NAME)
 
-test :
-	gcc $(CFLAGS) src/*.c operate/*.c libft/*.c test.c -o test
+bonus: $(BONUS_OBJS)
+	gcc $(CFLAGS) $^ -o $(NAME)
 
-bonus:
+
+
 
 
 re: fclean all
 
-.PHONY: all, clean, fclean, re, bonus, test
+.PHONY: all clean fclean re bonus

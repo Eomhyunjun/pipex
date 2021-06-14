@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 12:49:27 by heom              #+#    #+#             */
-/*   Updated: 2021/06/14 19:25:10 by heom             ###   ########.fr       */
+/*   Updated: 2021/06/14 19:24:56 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void
 	validate(int argc, char **argv)
 {
 	(void)argv;
-	if (argc != 5)
+	if (argc < 4)
 		exit_code_msg(1, "Invalid arg");
 }
 
