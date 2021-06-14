@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 12:49:27 by heom              #+#    #+#             */
-/*   Updated: 2021/06/14 19:24:56 by heom             ###   ########.fr       */
+/*   Updated: 2021/06/14 19:30:15 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,8 @@ void
 {
 	int		read_size;
 	char	buf[1024];
-	int i;
 
 	read_size = 1;
-	i = 0;
-	buf[1023] = 0;
 	while (read_size > 0)
 	{
 		read_size = read(all()->rfd, buf, 1024);
