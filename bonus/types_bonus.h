@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   malloc_fd.c                                        :+:      :+:    :+:   */
+/*   types_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/10 18:46:51 by heom              #+#    #+#             */
-/*   Updated: 2021/06/10 19:10:22 by heom             ###   ########.fr       */
+/*   Created: 2021/06/10 12:46:17 by heom              #+#    #+#             */
+/*   Updated: 2021/06/16 13:24:50 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#ifndef TYPES_BONUS_H
+# define TYPES_BONUS_H
 
-void
-	malloc_fd(void)
+typedef struct	s_all
 {
-	int	i;
+	int		**fd;
+	long	proc_num;
+	char	**env;
+	char	**argv;
+	int		rfd;
+	int		wfd;
+	char	**paths;
+	char	**new_argv;
+	pid_t	*pid;
+}				t_all;
 
-	i = 0;
-	if (!(all()->fd = (int **)malloc(sizeof(int *) * (all()->proc_num))))
-		safe_exit(1, "malloc_err");
-	while (i < all()->proc_num)
-	{
-		if (!(all()->fd[i] = (int *)malloc(sizeof(int) * 2)))
-			safe_exit(1, "malloc_err");
-		i++;
-	}
-}
+#endif

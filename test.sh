@@ -13,7 +13,7 @@ NL='\n'
 echo -e $GREEN"TEST START"$NC
 echo -n "making...."
 
-make re > /dev/null
+make bonus > /dev/null
 
 echo -e $GREEN"SUCCESS"$NC
 

@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types.h                                            :+:      :+:    :+:   */
+/*   make_pipe_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/10 12:46:17 by heom              #+#    #+#             */
-/*   Updated: 2021/06/11 20:28:15 by heom             ###   ########.fr       */
+/*   Created: 2021/06/10 18:48:19 by heom              #+#    #+#             */
+/*   Updated: 2021/06/16 13:21:50 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TYPES_H
-# define TYPES_H
+#include "pipex_bonus.h"
 
-typedef struct	s_all
+void
+	make_pipe(void)
 {
-	int		**fd;
-	long	proc_num;
-	char	**env;
-	char	**argv;
-	int		rfd;
-	int		wfd;
-	char	**paths;
-	char	**new_argv;
-	pid_t	*pid;
-}				t_all;
+	int	i;
 
-#endif
+	i = 0;
+	while (i < all()->proc_num)
+	{
+		if (pipe(all()->fd[i]))
+			safe_exit(1, "pipe error!\n");
+		i++;
+	}
+}

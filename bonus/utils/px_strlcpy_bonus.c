@@ -1,21 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   all.c                                              :+:      :+:    :+:   */
+/*   px_strlcpy_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/10 12:56:28 by heom              #+#    #+#             */
-/*   Updated: 2021/06/14 16:43:47 by heom             ###   ########.fr       */
+/*   Created: 2021/06/10 19:19:19 by heom              #+#    #+#             */
+/*   Updated: 2021/06/16 13:21:41 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex_bonus.h"
 
-t_all
-	*all(void)
+unsigned int	px_strlcpy(char *dest, char *src, unsigned int size)
 {
-	static t_all	instance;
+	char			*d;
+	char			*s;
+	unsigned int	n;
 
-	return (&instance);
+	d = dest;
+	s = src;
+	n = size;
+	if (s == 0)
+		return (0);
+	if (n != 0)
+	{
+		while (--n != 0)
+		{
+			if ((*d++ = *s++) == '\0')
+				break ;
+		}
+	}
+	if (n == 0)
+	{
+		if (size != 0)
+			*d = '\0';
+		while (*s++)
+			;
+	}
+	return (s - src - 1);
 }

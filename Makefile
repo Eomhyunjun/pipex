@@ -6,7 +6,7 @@
 #    By: heom <heom@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/10 12:51:40 by heom              #+#    #+#              #
-#    Updated: 2021/06/14 19:22:20 by heom             ###   ########.fr        #
+#    Updated: 2021/06/16 13:23:52 by heom             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ BONUS_OBJS = $(BONUS_FIL:.c=.o)
 
 MAND_FIL = $(addsuffix .c, $(addprefix mand/, $(MAND_SRCS))) \
 
-BONUS_FIL = $(addsuffix .c, $(addprefix bonus/, $(MAND_SRCS))) \
+BONUS_FIL = $(addsuffix _bonus.c, $(addprefix bonus/, $(MAND_SRCS))) \
 
 
 all : $(NAME)

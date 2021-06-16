@@ -6,13 +6,11 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 12:49:27 by heom              #+#    #+#             */
-/*   Updated: 2021/06/16 12:46:29 by heom             ###   ########.fr       */
+/*   Updated: 2021/06/16 13:22:40 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <errno.h>
-#include <string.h>
 
 void
 	validate(int argc, char **argv)
