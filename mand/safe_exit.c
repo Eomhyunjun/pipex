@@ -32,10 +32,10 @@ void
 }
 
 void
-	safe_exit(int code, const char *msg)
+	free_fd()
 {
-	int	i;
 	int	**fd;
+	int	i;
 
 	if ((fd = all()->fd))
 	{
@@ -52,11 +52,23 @@ void
 		free(fd);
 		all()->fd = 0;
 	}
+}	
+
+void
+	safe_exit(int code, const char *msg)
+{
+	free_fd();
 	free_px_split(all()->new_argv);
 	free_px_split(all()->paths);
 	if (all()->rfd != 0)
 		close(all()->rfd);
 	if (all()->wfd != 0)
 		close(all()->wfd);
+	if (all()->pid != 0)
+	{
+		free(all()->pid);
+		all()->pid = 0;
+	}
+	pause();
 	exit_code_msg(code, msg);
 }

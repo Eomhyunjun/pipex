@@ -88,5 +88,7 @@ int
 	}
 	close(all()->wfd);
 	wait_subprocess();
+	safe_exit(0, NULL);
+	
 	return (0);
 }
