@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 13:49:42 by heom              #+#    #+#             */
-/*   Updated: 2021/06/14 16:41:38 by heom             ###   ########.fr       */
+/*   Updated: 2021/06/16 12:48:48 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void
 }
 
 void
-	free_fd()
+	free_fd(void)
 {
 	int	**fd;
 	int	i;
@@ -52,7 +52,7 @@ void
 		free(fd);
 		all()->fd = 0;
 	}
-}	
+}
 
 void
 	safe_exit(int code, const char *msg)
@@ -69,6 +69,5 @@ void
 		free(all()->pid);
 		all()->pid = 0;
 	}
-	pause();
 	exit_code_msg(code, msg);
 }

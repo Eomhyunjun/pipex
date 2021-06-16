@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 13:49:42 by heom              #+#    #+#             */
-/*   Updated: 2021/06/14 16:41:38 by heom             ###   ########.fr       */
+/*   Updated: 2021/06/16 12:51:28 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void
 }
 
 void
-	safe_exit(int code, const char *msg)
+	free_fd(void)
 {
-	int	i;
 	int	**fd;
+	int	i;
 
 	if ((fd = all()->fd))
 	{
@@ -52,11 +52,22 @@ void
 		free(fd);
 		all()->fd = 0;
 	}
+}
+
+void
+	safe_exit(int code, const char *msg)
+{
+	free_fd();
 	free_px_split(all()->new_argv);
 	free_px_split(all()->paths);
 	if (all()->rfd != 0)
 		close(all()->rfd);
 	if (all()->wfd != 0)
 		close(all()->wfd);
+	if (all()->pid != 0)
+	{
+		free(all()->pid);
+		all()->pid = 0;
+	}
 	exit_code_msg(code, msg);
 }
